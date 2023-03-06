@@ -47,4 +47,17 @@ class WeatherController extends Controller
             return ResponseTrait::error(__("messages.error_occured"), $e);
         }
     }
+
+    public function updateWeatherDetails()
+    {
+        try {
+            $updatedUsers = $this->weatherService->updateWeathersDetails(1, 50, 1);
+
+            if ($updatedUsers) {
+                return ResponseTrait::success(__('messages.users_weather_fetched_successfully'));
+            }
+        } catch (\Exception $e) {
+            return ResponseTrait::error(__("messages.error_occured"), $e);
+        }
+    }
 }

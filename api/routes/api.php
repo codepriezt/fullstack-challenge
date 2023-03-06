@@ -29,5 +29,6 @@ Route::group(["prefix" => "v1",], function () {
      */
     Route::group(["prefix" => "users"], function () {
         Route::get('/', [WeatherController::class, 'fetchUserWeathers']);
+        Route::get('/weather', [WeatherController::class, 'updateWeatherDetails']);
     });
 });

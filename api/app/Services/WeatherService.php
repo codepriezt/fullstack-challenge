@@ -48,6 +48,7 @@ class WeatherService implements WeatherServiceInterface
                     if ($weatherResult['status']) {
                         $this->weatherRepo->createOrUpdate($weatherResult['weather'], $user->id);
                         Log::info('Success::Updated User =>' . $user->id . "Weather Report");
+                       
                     } else {
                         Log::error('Error::Unable to updated User =>' . $user->id . "Weather Report");
                     }

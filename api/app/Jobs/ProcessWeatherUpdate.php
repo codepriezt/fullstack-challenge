@@ -13,31 +13,12 @@ use Illuminate\Support\Facades\Log;
 use Throwable;
 
 
-class ProcessWeatherUpdate implements ShouldQueue
+class ProcessWeatherUpdate implements ShouldQueue 
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
-
-    /**
-     * The Weather Service
-     */
     public $weatherService;
 
-   
-    /**
-     * The number of times the job may be attempted.
-     *
-     * @var int
-     */
-    public $tries = 5;
-
-
-    /**
-     * The number of seconds to wait before retrying the job. .
-     *
-     * @var int
-     */
-    public $backoff = 3;
 
     /**
      * Create a new job instance.
