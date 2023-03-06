@@ -121,8 +121,8 @@ export default {
             email: user.email,
             latitude: user.longitude,
             longitude: user.latitude,
-            weather: user.weather?.weather,
-            description: user.weather?.weather_description,
+            weather: user.weather?.weather || "Weather",
+            description: user.weather?.weather_description || "Weather description",
             // updatedAt: this.formatTime(user.weather?.updatedAt as string),
           };
         });
