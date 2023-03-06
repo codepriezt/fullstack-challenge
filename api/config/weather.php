@@ -1,0 +1,6 @@
+<?php
+
+return [
+    "WEATHER_SERVICE_URL" => env("WEATHER_SERVICE_URL"),
+    "WEATHER_SERVICE_KEY" => env("WEATHER_SERVICE_KEY")
+];

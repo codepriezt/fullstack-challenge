@@ -1,13 +1,28 @@
-import { createRouter, createWebHistory } from "vue-router";
-import HomeView from "../views/HomeView.vue";
+import { createRouter, createWebHashHistory } from "vue-router";
+import UserView from "../views/UserView.vue";
+import LoginView from "../views/LoginView.vue";
+import Layout from "../layouts/AdminLayout.vue";
 
 const router = createRouter({
-  history: createWebHistory(import.meta.env.BASE_URL),
+  history: createWebHashHistory(import.meta.env.BASE_URL),
   routes: [
     {
-      path: "/",
+      path: "",
       name: "home",
-      component: HomeView,
+      component: Layout,
+      children: [
+        {
+          path: "/users",
+          name: "home",
+          component: UserView,
+        },
+      ],
+    },
+
+    {
+      path: "/login",
+      name: "login",
+      component: LoginView,
     },
   ],
 });

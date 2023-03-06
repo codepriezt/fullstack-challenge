@@ -1,0 +1,77 @@
+// // tailwind.config.js
+module.exports = {
+  content: ["./index.html", "./src/**/*.{vue,js,ts,jsx,tsx}"],
+  media: "class", // or 'media' or 'class'
+  theme: {
+    fontFamily: {
+      merriweather: ["Merriweather", "serif"],
+      "open-sans": ["Open Sans", "sans-serif"],
+    },
+
+    extend: {
+      colors: {
+        "primary-100": "#2366EB",
+        "primary-200": "#FCDA53",
+        "primary-300": "#f0f1ff",
+        "primary-400": "#FECF5A",
+        "primary-500": "#1F2732",
+        "dark-blue": "#1E1E2D",
+        "dark-blue-2": "#5271FF",
+        "light-blue": "#F5F8FA",
+        grey: "#5E6A79",
+        "grey-200": "#F1F4F6",
+        "grey-300": "#D2D2D2",
+        "grey-4": "#E1E7EC",
+        "green-1": "#188038",
+      },
+      height: {
+        height10: "10vh",
+        height15: "15vh",
+        height20: "20vh",
+        height30: "30vh",
+        height40: "40vh",
+        height50: "50vh",
+        height55: "55vh",
+        height60: "60vh",
+        height70: "70vh",
+        height80: "80vh",
+        height90: "90vh",
+        height100: "100vh",
+        height21rem: "21rem",
+        height22rem: "22rem",
+        height23rem: "23rem",
+        height24rem: "24rem",
+        height25rem: "25rem",
+        height26rem: "26rem",
+        height27rem: "27rem",
+        height28rem: "28rem",
+        height29rem: "29rem",
+        height30rem: "30rem",
+        height31rem: "31rem",
+        height32rem: "32rem",
+        height33rem: "33rem",
+        height34rem: "34rem",
+        height35rem: "35rem",
+        height36rem: "36rem",
+        height37rem: "37rem",
+        height38rem: "38rem",
+        height39rem: "39rem",
+        height40rem: "40rem",
+      },
+
+      boxShadow: {
+        "3xl": "0 0 0 10000px rgba(0,0,0,0.75)",
+      },
+      screens: {
+        xs: "300px",
+        sm: "450px",
+        xl: "1200px",
+        "2xl": "1440px",
+      },
+    },
+  },
+  variants: {
+    extend: {},
+  },
+  plugins: [],
+};

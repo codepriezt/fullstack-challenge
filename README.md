@@ -46,3 +46,16 @@ Using Laravel and VueJS, create an application which shows the weather for a set
 - Install javascript dependencies: `npm install`
 - Run frontend: `npm run dev`
 - Visit frontend: `http://localhost:5173`
+
+
+# Solution Setup GuideLines
+
+## To Setup the Api 
+I have updated the env.example file to reflect the new env variable added before running the application:
+
+
+## To run the local dev environment:
+- Fetch api key from openweathermap.org
+- Run the scheduler `php artisan schedule:work`
+- Run the queue worker `php artisan queue:work`
+- The scheduler is currently configured to run every 15 mins to fetch lastest weather updates,but this can be updated in the kernel file.
