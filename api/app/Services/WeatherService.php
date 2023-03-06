@@ -53,8 +53,9 @@ class WeatherService implements WeatherServiceInterface
                         Log::error('Error::Unable to updated User =>' . $user->id . "Weather Report");
                     }
                 }
-                DB::commit();
+               
             }
+            DB::commit();
             return true;
         } catch (\Exception $e) {
             DB::rollBack();

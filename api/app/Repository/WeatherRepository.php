@@ -27,7 +27,7 @@ class WeatherRepository implements WeatherRepositoryInterface
         $base = isset($data['base'])  ? $data['base'] : null;
         $temp = isset($data['main']['temp']) ? $data['main']['temp'] : null;
 
-        return UserWeather::updateOrCreate(
+        UserWeather::updateOrCreate(
             [
                 'user_id' => $userId
             ],
