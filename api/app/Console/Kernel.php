@@ -16,7 +16,7 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        $schedule->job(ProcessWeatherUpdate::class)->everyMinute()
+        $schedule->job(ProcessWeatherUpdate::class)->everyFifteenMinutes()
                     ->sendOutputTo(storage_path('logs/laravel.log'));
     }
 
