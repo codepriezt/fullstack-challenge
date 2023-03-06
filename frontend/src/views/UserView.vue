@@ -4,7 +4,6 @@
       :columns="columns"
       :data-source="tableData"
       :loading="loading"
-      :placeholder="'Search for weather name or email'"
       :button-placeholder="'Update Weather'"
       @btn-function="update($event)"
       @show-modal-func="handleModal($event)"
@@ -114,18 +113,21 @@ export default {
       const users = await fetchUsers();
       if (users.status) {
         this.dataSource = users.data as IDataSource[];
-        this.tableData = users.data.map((user: IDataSource) => {
-          return {
-            id: user.id,
-            name: user.name,
-            email: user.email,
-            latitude: user.longitude,
-            longitude: user.latitude,
-            weather: user.weather?.weather || "weather",
-            description: user.weather?.weather_description || "weather description",
-            // updatedAt: this.formatTime(user.weather?.updatedAt as string),
-          };
-        });
+
+        if (this.dataSource.length) {
+          this.tableData = users.data.map((user: IDataSource) => {
+            return {
+              id: user.id,
+              name: user.name,
+              email: user.email,
+              latitude: user.longitude,
+              longitude: user.latitude,
+              weather: user.weather?.weather || "weather",
+              description:
+              user.weather?.weather_description || "weather description",
+            };
+          });
+        }
       }
       this.loading = false;
     },

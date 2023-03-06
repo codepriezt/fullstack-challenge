@@ -46,7 +46,6 @@ import { reactive, computed } from "vue";
 defineProps<{
   columns: IColumn[];
   dataSource: any[];
-  placeholder: string;
   loading:boolean,
   buttonPlaceholder: string;
 }>();
