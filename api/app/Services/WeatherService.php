@@ -5,7 +5,6 @@ namespace App\Services;
 
 use App\Helpers\WeatherHelper;
 use Illuminate\Support\Facades\Log;
-use Illuminate\Support\Facades\DB;
 use App\Services\Contracts\WeatherServiceInterface;
 use App\Repository\Contracts\WeatherRepositoryInterface;
 
@@ -36,7 +35,6 @@ class WeatherService implements WeatherServiceInterface
     public function updateWeathersDetails(int $page, int $limit, int $totalPage)
     {
         try {
-            DB::beginTransaction();
             $users = $this->weatherRepo->fetchUserCords($page, $limit);
             if (count($users) >= 1) {
                 foreach ($users as $user) {
@@ -51,11 +49,9 @@ class WeatherService implements WeatherServiceInterface
                         Log::error('Error::Unable to updated User =>' . $user->id . "Weather Report");
                     }
                 }
-               DB::commit();
             }
             return true;
         } catch (\Exception $e) {
-            DB::rollback();
             Log::error('Error::UpdatingUserCurrentWeather' . '=>' . $e->getMessage(), $e->getTrace());
             return false;
         }
