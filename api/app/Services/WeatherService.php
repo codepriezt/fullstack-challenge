@@ -56,6 +56,7 @@ class WeatherService implements WeatherServiceInterface
             }
             return true;
         } catch (\Exception $e) {
+            DB::rollBack();
             Log::error('Error::UpdatingUserCurrentWeather' . '=>' . $e->getMessage(), $e->getTrace());
             return false;
         }
