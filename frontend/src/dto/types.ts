@@ -46,3 +46,10 @@ export interface IColumn {
   key: string;
   scopedSlots: { customRender: string };
 }
+
+
+export interface IPagination{
+  pageSize:number;
+  currentPage:number;
+  total:number
+}

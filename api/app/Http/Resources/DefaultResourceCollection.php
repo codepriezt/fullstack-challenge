@@ -34,11 +34,14 @@ class DefaultResourceCollection extends ResourceCollection
 
     protected function paginationLinks($paginated)
     {
+      
         return [
             'first' => $paginated['first_page_url'] ?? null,
             'last' => $paginated['last_page_url'] ?? null,
             'prev' => $paginated['prev_page_url'] ?? null,
             'next' => $paginated['next_page_url'] ?? null,
+            'total' => $paginated['total'] ?? 0,
+            'pageSize' => $paginated['per_page'] ??0
         ];
     }
 

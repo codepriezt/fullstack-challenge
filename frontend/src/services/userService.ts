@@ -1,8 +1,8 @@
 const baseUrl = import.meta.env.VITE_BACKEND_SERVER_URL;
 
-export const fetchUsers = async (search: string = ""): Promise<any> => {
+export const fetchUsers = async (page: number): Promise<any> => {
   let users;
-  const response = await fetch(`${baseUrl}/users?search=${search}`, {
+  const response = await fetch(`${baseUrl}/users?page=${page}`, {
     mode: "cors",
   });
 
@@ -13,8 +13,10 @@ export const fetchUsers = async (search: string = ""): Promise<any> => {
       status: true,
       data: users?.data,
       meta: {
-        currentPage: users?.meta?.current_page,
+        currentPage:users?.meta?.current_page,
         lastPage: users?.meta?.last_page,
+        pageSize:users?.links?.pageSize,
+        total: users?.links?.total,
       },
     });
   } else {

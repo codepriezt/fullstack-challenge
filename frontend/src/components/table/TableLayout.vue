@@ -17,6 +17,13 @@
           {{ `Selected ${state.selectedRowKeys.length} items ` }}
         </template>
       </div>
+
+      <a-pagination
+        :pageSize="pagination.pageSize"
+        :total="pagination.total"
+        :current="pagination.currentPage"
+        @change="onChangePage"
+      />
     </div>
     <a-table
       :row-selection="{
@@ -25,6 +32,7 @@
       }"
       :loading="loading"
       :columns="columns"
+      :pagination="false"
       :data-source="dataSource"
       :row-key="rowKey"
     >
@@ -40,7 +48,7 @@
 </template>
 
 <script setup lang="ts">
-import type { IColumn } from "@/dto/types";
+import type { IColumn  , IPagination} from "@/dto/types";
 import { reactive, computed } from "vue";
 
 defineProps<{
@@ -48,6 +56,7 @@ defineProps<{
   dataSource: any[];
   loading:boolean,
   buttonPlaceholder: string;
+  pagination:IPagination
 }>();
 
 const state = reactive<{
@@ -60,7 +69,8 @@ const state = reactive<{
   selectedRowKeys: [],
 });
 
-defineEmits(["btnFunction", "showModalFunc"]);
+
+const emit = defineEmits(["pageOption", "btnFunction", "showModalFunc"]) // this was done so i can emit this value to the parent component
 
 const onSelectChange = (selectedRowKeys: string[]) => {
   state.selectedRowKeys = selectedRowKeys;
@@ -69,6 +79,11 @@ const onSelectChange = (selectedRowKeys: string[]) => {
 const rowKey = (dataSource: any) => {
   return dataSource.id;
 };
+
+const onChangePage = (page:any) => {
+    emit('pageOption' , page)
+}
+
 
 const hasSelected = computed(() => state.selectedRowKeys.length > 0);
 </script>

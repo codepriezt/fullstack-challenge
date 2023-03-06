@@ -5,8 +5,10 @@
       :data-source="tableData"
       :loading="loading"
       :button-placeholder="'Update Weather'"
+      :pagination="pagination"
       @btn-function="update($event)"
       @show-modal-func="handleModal($event)"
+      @page-option="fetchData($event)"
     ></tableLayout>
 
     <a-modal
@@ -29,7 +31,12 @@
 import moment from "moment";
 import TableLayout from "@/components/table/TableLayout.vue";
 import { fetchUsers } from "@/services/userService";
-import type { IDataSource, ITableData, IColumn } from "@/dto/types";
+import type {
+  IDataSource,
+  ITableData,
+  IColumn,
+  IPagination,
+} from "@/dto/types";
 
 export default {
   components: {
@@ -82,6 +89,11 @@ export default {
       user: {} as ITableData,
       selectedRow: [] as string[],
       loading: false,
+      pagination: {
+        pageSize:15,
+        currentPage: 1,
+        total: 1,
+      } as IPagination,
     };
   },
 
@@ -108,9 +120,9 @@ export default {
       this.selectedRow = selectedRow;
     },
 
-    async fetchData() {
+    async fetchData(page: number = 1) {
       this.loading = true;
-      const users = await fetchUsers();
+      const users = await fetchUsers(page);
       if (users.status) {
         this.dataSource = users.data as IDataSource[];
 
@@ -124,9 +136,15 @@ export default {
               longitude: user.latitude,
               weather: user.weather?.weather || "weather",
               description:
-              user.weather?.weather_description || "weather description",
+                user.weather?.weather_description || "weather description",
             };
           });
+
+          this.pagination = {
+            pageSize: users?.meta?.pageSize,
+            currentPage: users?.meta.currentPagee,
+            total: users?.meta.total,
+          };
         }
       }
       this.loading = false;
