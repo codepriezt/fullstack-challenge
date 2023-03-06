@@ -16,7 +16,7 @@ return new class extends Migration
             $table->unsignedBigInteger('user_id')->index();
             $table->string('weather')->nullable();
             $table->string('weather_description')->nullable();
-            $table->string('base')->nullbale();
+            $table->string('base')->nullable();
             $table->decimal('temp')->nullable();
             $table->decimal('main_temp_min')->nullable();
             $table->decimal('main_temp_max')->nullable();
@@ -31,7 +31,6 @@ return new class extends Migration
             $table->integer('sys_sunrise')->nullable();
             $table->integer('sys_sunset')->nullable();
             $table->integer('timezone')->nullable();
-            $table->integer('updatedTime')->default(1);
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
